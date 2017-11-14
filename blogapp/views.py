@@ -10,7 +10,8 @@ def index(request):
     return render(request, 'blog/index.html', context={'post_list':post_list})
 def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    # 记得在顶部引入 markdown 模块
+    # 阅读量+1
+    post.increase_views()
     post.body = markdown.markdown(post.body,extensions=[
                                      'markdown.extensions.extra',
                                      'markdown.extensions.codehilite',

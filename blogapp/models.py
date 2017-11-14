@@ -23,6 +23,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag,blank=True)
     author = models.ForeignKey(User) # 文章作者，这里 User 是从 django.contrib.auth.models 导入的。
     # django.contrib.auth 是 Django 内置的应用，专门用于处理网站用户的注册、登录等流程，User 是 Django 为我们已经写好的用户模型。
+    views = models.PositiveIntegerField(default=0)#阅读量
     def __str__(self):
         return self.title
 
@@ -30,5 +31,8 @@ class Post(models.Model):
         # 记得从 django.urls 中导入 reverse 函数
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
     class Meta:
         ordering = ['-created_time']
