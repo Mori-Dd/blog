@@ -3,7 +3,7 @@ from blogapp.models import Post,Category
 import markdown
 from comments.forms import CommentForm
 
-# Create your views here.
+# Create your views here here.
 
 def index(request):
     post_list = Post.objects.all().order_by('-created_time')
