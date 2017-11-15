@@ -8,8 +8,8 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-.sqlite3
 env/
+.sqlite3
 build/
 develop-eggs/
 dist/
